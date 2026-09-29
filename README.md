@@ -101,16 +101,7 @@ python -m http.server 8080
 The Firebase Project configuration in `js/config.js` is already configured:
 
 ```javascript
-const firebaseConfig = {
-  apiKey: "AIzaSyC1I7uggV3I8Z7pmbpWQmJZO_mHlWQ7qRc",
-  authDomain: "aitdata-1f856.firebaseapp.com",
-  databaseURL: "https://aitdata-1f856-default-rtdb.firebaseio.com",
-  projectId: "aitdata-1f856",
-  storageBucket: "aitdata-1f856.firebasestorage.app",
-  messagingSenderId: "535350785851",
-  appId: "1:535350785851:web:67abe23a6da1dca7fe291e",
-  measurementId: "G-82Y1DL677C"
-};
+
 ```
 
 ### 3. Configure Official Government Contacts in `js/config.js`
