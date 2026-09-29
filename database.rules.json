@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "laptop_scheme_students": {
+      /* Full student records containing personal contact info and admin notes */
+      ".read": "auth != null",
+      ".indexOn": ["registrationId", "district", "status", "passingYear"],
+      "$studentId": {
+        ".write": "auth != null || (!data.exists() && newData.exists() && newData.child('status').val() === 'Submitted')"
+      }
+    },
+    "2022_batch_students": {
+      /* Legacy compatibility node */
+      ".read": "auth != null",
+      ".indexOn": ["registrationId", "district", "status", "passingYear"],
+      "$studentId": {
+        ".write": "auth != null || (!data.exists() && newData.exists() && newData.child('status').val() === 'Submitted')"
+      }
+    },
+    "public_students": {
+      /* Limited public representation index: Name, School, District, Taluk, Passing Year, Status */
+      ".read": true,
+      ".indexOn": ["district", "status", "passingYear"],
+      "$registrationId": {
+        ".write": "auth != null || (!data.exists() && newData.exists() && newData.child('status').val() === 'Submitted')"
+      }
+    },
+    "admin_users": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    }
+  }
+}

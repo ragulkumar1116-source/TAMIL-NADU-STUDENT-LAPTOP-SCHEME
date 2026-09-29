@@ -1,0 +1,551 @@
+/* ==========================================================================
+   TAMIL NADU STUDENT LAPTOP SCHEME - STUDENT REPRESENTATION PORTAL
+   Custom Stylesheet (Professional Blue, White & Light Grey Theme)
+   ========================================================================== */
+
+:root {
+  --primary-blue: #1d4ed8;
+  --primary-blue-dark: #1e40af;
+  --primary-blue-light: #3b82f6;
+  --primary-blue-subtle: #eff6ff;
+  --accent-blue: #0284c7;
+  --verified-blue: #2563eb;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: #64748b;
+  --slate-400: #94a3b8;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --white: #ffffff;
+  --success-green: #15803d;
+  --warning-amber: #b45309;
+  --danger-red: #b91c1c;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--slate-800);
+  background-color: var(--slate-50);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Logo & Brand
+   -------------------------------------------------------------------------- */
+.portal-nav-logo {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.portal-nav-logo-dark {
+  background-color: #ffffff;
+  padding: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   Top Disclaimer Bar
+   -------------------------------------------------------------------------- */
+.disclaimer-top-bar {
+  background-color: #fef3c7;
+  color: #92400e;
+  border-bottom: 1px solid #fde68a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 6px 12px;
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Bar
+   -------------------------------------------------------------------------- */
+.navbar-custom {
+  background-color: var(--white);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid var(--primary-blue-subtle);
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+.portal-brand {
+  display: flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.portal-brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-brand-title {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--primary-blue-dark);
+  letter-spacing: -0.01em;
+}
+
+.portal-brand-subtitle {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  letter-spacing: 0.05em;
+}
+
+.portal-brand-tag {
+  font-size: 0.68rem;
+  color: #b45309;
+  font-weight: 600;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--slate-700);
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link:focus {
+  color: var(--primary-blue);
+  background-color: var(--primary-blue-subtle);
+}
+
+.nav-link.active {
+  color: var(--primary-blue-dark) !important;
+  font-weight: 700;
+  background-color: var(--primary-blue-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  background: linear-gradient(180deg, #ffffff 0%, var(--primary-blue-subtle) 100%);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 3.5rem 1rem 3rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #eff6ff;
+  color: var(--primary-blue);
+  border: 1px solid #bfdbfe;
+  font-weight: 600;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.hero-message {
+  font-size: 1.08rem;
+  color: var(--slate-600);
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Feature Check Grid
+   -------------------------------------------------------------------------- */
+.feature-pill-card {
+  background-color: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.feature-pill-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  border-color: #bfdbfe;
+}
+
+.feature-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.feature-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--slate-800);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn-primary-custom {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: var(--white);
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(29, 78, 216, 0.15);
+}
+
+.btn-primary-custom:hover, .btn-primary-custom:focus {
+  background-color: var(--primary-blue-dark);
+  border-color: var(--primary-blue-dark);
+  color: var(--white);
+  box-shadow: 0 4px 8px rgba(29, 78, 216, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-secondary-custom {
+  background-color: var(--white);
+  border: 1px solid var(--slate-300);
+  color: var(--slate-700);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary-custom:hover {
+  background-color: var(--slate-100);
+  border-color: var(--slate-400);
+  color: var(--slate-900);
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+.portal-card {
+  background-color: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.portal-card-header {
+  padding: 1.25rem 1.5rem;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.portal-card-body {
+  padding: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Verified Blue Tick & Status Badges
+   -------------------------------------------------------------------------- */
+.badge-verified-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #eff6ff;
+  border: 1.5px solid #2563eb;
+  color: #1e40af;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+
+.verified-circle-tick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.4);
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.badge-status-submitted {
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.badge-status-under-verification {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.badge-status-verified {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border: 1.5px solid #2563eb;
+  font-weight: 700;
+}
+
+.badge-status-correction-required {
+  background-color: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.badge-status-rejected {
+  background-color: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+/* --------------------------------------------------------------------------
+   Metric Stat Cards
+   -------------------------------------------------------------------------- */
+.stat-card {
+  background-color: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card-border-primary {
+  border-left: 4px solid var(--primary-blue);
+}
+
+.stat-card-border-success {
+  border-left: 4px solid #16a34a;
+}
+
+.stat-card-border-info {
+  border-left: 4px solid #0284c7;
+}
+
+.stat-card-border-warning {
+  border-left: 4px solid #f59e0b;
+}
+
+.stat-card-border-danger {
+  border-left: 4px solid #dc2626;
+}
+
+.stat-card-border-secondary {
+  border-left: 4px solid #64748b;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--slate-500);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.35rem;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+.portal-table thead th {
+  background-color: var(--slate-100);
+  color: var(--slate-700);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--slate-200);
+  padding: 0.85rem 1rem;
+}
+
+.portal-table tbody td {
+  padding: 0.85rem 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--slate-200);
+  font-size: 0.9rem;
+}
+
+.portal-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+/* --------------------------------------------------------------------------
+   Notice Banner
+   -------------------------------------------------------------------------- */
+.notice-box {
+  background-color: #fffbeb;
+  border: 1px solid #fef08a;
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  color: #78350f;
+  font-size: 0.88rem;
+}
+
+.notice-box-blue {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+  font-size: 0.88rem;
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+.form-label {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--slate-700);
+  margin-bottom: 0.35rem;
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid var(--slate-300);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--primary-blue-light);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-control[readonly], .form-control:disabled {
+  background-color: var(--slate-100);
+  color: var(--slate-600);
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   Success Box
+   -------------------------------------------------------------------------- */
+.success-receipt-card {
+  background-color: var(--white);
+  border: 2px dashed #93c5fd;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.reg-id-display {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  background-color: #eff6ff;
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #bfdbfe;
+  margin: 1rem 0;
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer-custom {
+  background-color: var(--white);
+  border-top: 1px solid var(--slate-200);
+  padding: 2.5rem 1rem 2rem;
+  color: var(--slate-600);
+  font-size: 0.88rem;
+  margin-top: auto;
+}
+
+.footer-disclaimer-box {
+  background-color: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--slate-600);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+  .reg-id-display {
+    font-size: 1.35rem;
+    word-break: break-all;
+  }
+  .stat-value {
+    font-size: 1.6rem;
+  }
+  .btn-primary-custom, .btn-secondary-custom {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .portal-nav-logo {
+    height: 40px;
+  }
+}

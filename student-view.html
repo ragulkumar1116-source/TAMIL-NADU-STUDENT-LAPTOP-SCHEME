@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Representation View | Tamil Nadu Laptop Scheme Portal</title>
+  <meta name="description" content="View verified representation details for an individual student.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand portal-brand" href="index.html">
+        <img src="assets/logo.png" alt="Portal Logo" class="portal-nav-logo me-2" onerror="this.src='https://w7.pngwing.com/pngs/408/625/png-transparent-government-of-tamil-nadu-seal-of-tamil-nadu-tamil-nadu-legislative-assembly-state-emblem-of-india-others-miscellaneous-emblem-food.png'">
+        <div class="portal-brand-text">
+          <span class="portal-brand-title">STUDENT LAPTOP SCHEME</span>
+          <span class="portal-brand-subtitle">Representation Portal (2020-2021 & 2021-2022)</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#portalNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="portalNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html"><i class="bi bi-person-plus me-1"></i> Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="status.html"><i class="bi bi-search me-1"></i> Check Status</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="government.html"><i class="bi bi-journal-text me-1"></i> Representation Data</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn btn-sm btn-outline-secondary px-3" href="admin.html">
+              <i class="bi bi-lock me-1"></i> Admin
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+
+      <!-- Navigation breadcrumb -->
+      <div class="mb-3">
+        <a href="government.html" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-arrow-left me-1"></i> Back to Representation List
+        </a>
+      </div>
+
+      <!-- Loading State -->
+      <div id="studentViewLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="text-muted small mt-2">Loading student representation details...</div>
+      </div>
+
+      <!-- Error State -->
+      <div id="studentViewError" class="portal-card mx-auto d-none text-center p-5" style="max-width: 650px;">
+        <i class="bi bi-exclamation-triangle text-danger fs-1 d-block mb-3"></i>
+        <h2 class="h5 fw-bold text-slate-900 mb-2">Record Not Found</h2>
+        <p class="text-muted" id="studentViewErrorMessage">The requested student representation does not exist.</p>
+        <a href="government.html" class="btn btn-primary-custom mt-2">
+          Return to Representation Dashboard
+        </a>
+      </div>
+
+      <!-- Student Record Detail Card -->
+      <div id="studentViewContent" class="portal-card mx-auto d-none" style="max-width: 750px;">
+        <div class="portal-card-header bg-white border-bottom d-flex align-items-center justify-content-between flex-wrap gap-2">
+          <div>
+            <span class="badge bg-primary-subtle text-primary fw-bold mb-1">Class 12 Representation Record</span>
+            <h1 class="h3 fw-bold text-slate-900 mb-0" id="viewStudentName">-</h1>
+            <div class="font-monospace text-primary fw-bold small mt-1" id="viewRegId">-</div>
+          </div>
+          <div id="viewStatusBadge">
+            <!-- Dynamic Status Badge with Blue Tick if Verified -->
+          </div>
+        </div>
+
+        <div class="portal-card-body p-4">
+          <h2 class="h6 fw-bold text-uppercase text-muted letter-spacing-1 mb-3">
+            Academic & Institution Details
+          </h2>
+
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td class="bg-light text-muted w-35 fw-semibold">12th Standard School:</td>
+                  <td class="fw-semibold text-slate-900" id="viewSchool">-</td>
+                </tr>
+                <tr>
+                  <td class="bg-light text-muted fw-semibold">District:</td>
+                  <td id="viewDistrict">-</td>
+                </tr>
+                <tr>
+                  <td class="bg-light text-muted fw-semibold">Taluk:</td>
+                  <td id="viewTaluk">-</td>
+                </tr>
+                <tr>
+                  <td class="bg-light text-muted fw-semibold">Academic Batch Year:</td>
+                  <td class="fw-bold text-primary" id="viewPassingYear">-</td>
+                </tr>
+                <tr>
+                  <td class="bg-light text-muted fw-semibold">Representation Date:</td>
+                  <td id="viewRegisteredDate">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Strict Privacy Notice -->
+          <div class="notice-box-blue mb-0">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-shield-lock-fill fs-4 me-3"></i>
+              <div class="small">
+                <strong>Data Privacy Protection:</strong>
+                As per representation security policy, student contact numbers, email addresses, and residential home addresses are protected and not displayed in public or authority view modes.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer bg-light border-top p-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div class="text-muted small">
+            Source: Tamil Nadu Student Representation Portal
+          </div>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+              <i class="bi bi-printer me-1"></i> Print Representation
+            </button>
+            <a href="government.html" class="btn btn-sm btn-primary">
+              <i class="bi bi-list-ul me-1"></i> View All Records
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <div class="fw-bold text-slate-800 mb-1">
+        TAMIL NADU STUDENT LAPTOP SCHEME REPRESENTATION
+      </div>
+      <div class="text-muted small mt-2">
+        &copy; 2026 Student Representation Portal • Tamil Nadu
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase Compat CDN Libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <!-- Portal Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/student-view.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government Representation Data | Tamil Nadu Laptop Scheme Portal</title>
+  <meta name="description" content="Public student representation summary and district statistics for Government review and authority submissions.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar with Logo -->
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand portal-brand" href="index.html">
+        <img src="assets/logo.png" alt="Portal Logo" class="portal-nav-logo me-2" onerror="this.src='https://w7.pngwing.com/pngs/408/625/png-transparent-government-of-tamil-nadu-seal-of-tamil-nadu-tamil-nadu-legislative-assembly-state-emblem-of-india-others-miscellaneous-emblem-food.png'">
+        <div class="portal-brand-text">
+          <span class="portal-brand-title">STUDENT LAPTOP SCHEME</span>
+          <span class="portal-brand-subtitle">Representation Portal (2020-2021 & 2021-2022)</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#portalNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="portalNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html"><i class="bi bi-person-plus me-1"></i> Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="status.html"><i class="bi bi-search me-1"></i> Check Status</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="government.html"><i class="bi bi-journal-text me-1"></i> Representation Data</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link btn btn-sm btn-outline-secondary px-3" href="admin.html">
+              <i class="bi bi-lock me-1"></i> Admin
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container">
+
+      <!-- Header Section -->
+      <div class="text-center mb-4">
+        <div class="d-flex justify-content-center mb-2">
+          <img src="assets/logo.png" alt="Logo" style="height: 80px; width: 80px; border-radius: 50%; object-fit: contain;" class="shadow-sm">
+        </div>
+        <span class="badge bg-primary-subtle text-primary fw-bold px-3 py-2 rounded-pill mb-2">
+          Public Representation Desk
+        </span>
+        <h1 class="h2 fw-bold text-slate-900 mb-1">STUDENT LAPTOP SCHEME</h1>
+        <div class="h4 text-primary fw-semibold mb-2">STUDENT REPRESENTATION DATA</div>
+        <p class="text-muted small max-w-700 mx-auto">
+          Consolidated summary of representations submitted by Tamil Nadu Class 12 students (2020-2021, 2021-2022 batches) who state they did not receive the laptop scheme benefit.
+        </p>
+      </div>
+
+      <!-- Aggregate Statistics Cards -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="stat-card stat-card-border-primary">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="stat-label">TOTAL REGISTERED</div>
+                <div class="stat-value text-slate-900" id="statTotalRegistered">0</div>
+                <small class="text-muted">Total student representations</small>
+              </div>
+              <div class="fs-1 text-primary opacity-25">
+                <i class="bi bi-people-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="stat-card stat-card-border-success">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="stat-label">ADMIN VERIFIED</div>
+                <div class="stat-value text-primary" id="statTotalVerified">0</div>
+                <small class="text-muted">Academic records verified</small>
+              </div>
+              <div class="fs-1 text-primary opacity-25">
+                <i class="bi bi-patch-check-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="stat-card stat-card-border-info">
+            <div class="d-flex align-items-center justify-content-between">
+              <div>
+                <div class="stat-label">DISTRICTS REPRESENTED</div>
+                <div class="stat-value text-info-emphasis" id="statDistrictsCount">0</div>
+                <small class="text-muted">Across Tamil Nadu</small>
+              </div>
+              <div class="fs-1 text-info opacity-25">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action & Export Bar -->
+      <div class="portal-card mb-4">
+        <div class="portal-card-body p-3">
+          <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+              <h2 class="h5 fw-bold text-slate-900 mb-1">
+                <i class="bi bi-table me-2 text-primary"></i>STUDENT REPRESENTATION DETAILS
+              </h2>
+              <p class="text-muted small mb-0">
+                Official representations suitable for sharing with School Education Authorities. Contact data strictly hidden.
+              </p>
+            </div>
+
+            <!-- Export Buttons -->
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" id="btnDownloadPublicExcel" class="btn btn-outline-success">
+                <i class="bi bi-file-earmark-excel me-1"></i> DOWNLOAD EXCEL
+              </button>
+              <button type="button" id="btnGeneratePublicPDF" class="btn btn-primary-custom">
+                <i class="bi bi-file-earmark-pdf me-1"></i> GENERATE PDF REPRESENTATION
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="portal-card mb-4">
+        <div class="portal-card-body p-3">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text bg-white text-muted"><i class="bi bi-search"></i></span>
+                <input type="text" id="searchKeyword" class="form-control" placeholder="Search ID, Name, School...">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <select id="filterDistrict" class="form-select">
+                <option value="">All Districts (Tamil Nadu)</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <select id="filterYear" class="form-select">
+                <option value="">All Academic Batches</option>
+              </select>
+            </div>
+
+            <div class="col-md-2">
+              <select id="filterStatus" class="form-select">
+                <option value="">All Statuses</option>
+                <option value="Verified">Verified Only</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Under Verification">Under Verification</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Student Representation Table -->
+      <div class="portal-card">
+        <div class="portal-card-header bg-white d-flex align-items-center justify-content-between py-3">
+          <span class="fw-semibold text-slate-700" id="displayingCountLabel">Loading representations...</span>
+          <span class="badge bg-light text-muted border">Class 12 • Tamil Nadu</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table portal-table align-middle mb-0">
+            <thead>
+              <tr>
+                <th style="width: 50px;">S.No</th>
+                <th>Registration ID</th>
+                <th>Student Name</th>
+                <th>School Name</th>
+                <th>District</th>
+                <th>Academic Batch</th>
+                <th>Status</th>
+                <th class="text-end">Action</th>
+              </tr>
+            </thead>
+            <tbody id="publicStudentsTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="tableLoading" class="text-center py-5 d-none">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <div class="text-muted small mt-2">Loading representations from database...</div>
+        </div>
+      </div>
+
+      <!-- Bottom Privacy Notice -->
+      <div class="notice-box-blue mt-4">
+        <div class="d-flex">
+          <i class="bi bi-shield-check text-primary fs-5 me-2 flex-shrink-0"></i>
+          <div>
+            <strong>Data Privacy Protection:</strong>
+            This page strictly protects student privacy by withholding personal phone numbers, email addresses, and home addresses from public view.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom">
+    <div class="container text-center">
+      <div class="fw-bold text-slate-800 mb-1">
+        TAMIL NADU STUDENT LAPTOP SCHEME REPRESENTATION
+      </div>
+      <div class="text-muted small mt-2">
+        &copy; 2026 Student Representation Portal • Tamil Nadu
+      </div>
+    </div>
+  </footer>
+
+  <!-- SheetJS & jsPDF Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Firebase Compat CDN Libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <!-- Portal Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/government.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Tamil Nadu Laptop Scheme Portal</title>
+  <meta name="description" content="Authorized administrative portal for verification, record audits, and reporting.">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+  <!-- Top Disclaimer Notice Bar -->
+  <div class="disclaimer-top-bar bg-dark text-warning border-bottom border-secondary">
+    <i class="bi bi-shield-lock-fill me-1"></i>
+    <strong>ADMINISTRATIVE CONTROL PANEL — RESTRICTED ACCESS</strong>
+  </div>
+
+  <!-- Admin Navigation Bar with Logo -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid px-lg-4">
+      <a class="navbar-brand d-flex align-items-center" href="admin.html">
+        <img src="assets/logo.png" alt="Logo" class="portal-nav-logo portal-nav-logo-dark me-2" onerror="this.src='https://w7.pngwing.com/pngs/408/625/png-transparent-government-of-tamil-nadu-seal-of-tamil-nadu-tamil-nadu-legislative-assembly-state-emblem-of-india-others-miscellaneous-emblem-food.png'">
+        <div>
+          <span class="fw-bold text-white fs-6 d-block leading-tight">TN LAPTOP SCHEME</span>
+          <span class="text-secondary small text-uppercase" style="font-size: 0.68rem; letter-spacing: 0.05em;">ADMINISTRATION PORTAL</span>
+        </div>
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="adminNavbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#dashboardSection"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#studentsSection"><i class="bi bi-people me-1"></i> Students</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#districtStatsSection"><i class="bi bi-geo-alt me-1"></i> District Statistics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#exportsSection"><i class="bi bi-download me-1"></i> Reports & Exports</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-3">
+          <a href="index.html" target="_blank" class="btn btn-sm btn-outline-light">
+            <i class="bi bi-box-arrow-up-right me-1"></i> View Public Site
+          </a>
+          <span id="adminUserBadge" class="badge bg-secondary font-monospace d-none">admin</span>
+          <button type="button" class="btn btn-sm btn-danger btn-admin-logout">
+            <i class="bi bi-box-arrow-right me-1"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-4">
+    <div class="container-fluid px-lg-4">
+
+      <!-- ================================================================== -->
+      <!-- 1. AUTHENTICATION SECTION (Displayed when not logged in) -->
+      <!-- ================================================================== -->
+      <section id="adminLoginSection" class="py-5">
+        <div class="portal-card mx-auto shadow-sm" style="max-width: 480px;">
+          <div class="portal-card-header text-center bg-white border-bottom py-4">
+            <div class="d-inline-flex align-items-center justify-content-center bg-primary-subtle text-primary rounded-circle mb-3" style="width: 60px; height: 60px; font-size: 1.75rem;">
+              <i class="bi bi-shield-lock"></i>
+            </div>
+            <h1 class="h4 fw-bold text-slate-900 mb-1">ADMIN LOGIN</h1>
+            <p class="text-muted small mb-0">Enter your administrator credentials to access student records and verification tools.</p>
+          </div>
+
+          <div class="portal-card-body p-4">
+            <div id="adminLoginAlert"></div>
+
+            <form id="adminLoginForm">
+              <div class="mb-3">
+                <label for="adminEmail" class="form-label">Admin Email Address</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light text-muted"><i class="bi bi-envelope"></i></span>
+                  <input type="email" class="form-control" id="adminEmail" placeholder="admin@example.com" required>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="adminPassword" class="form-label">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light text-muted"><i class="bi bi-key"></i></span>
+                  <input type="password" class="form-control" id="adminPassword" placeholder="••••••••" required>
+                </div>
+              </div>
+
+              <button type="submit" id="adminLoginBtn" class="btn btn-primary-custom w-100 py-2">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Sign In to Dashboard
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- 2. DASHBOARD SECTION (Displayed after authentication) -->
+      <!-- ================================================================== -->
+      <section id="adminDashboardSection" class="d-none">
+
+        <!-- Top Header & Refresh -->
+        <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-2">
+          <div>
+            <h1 class="h3 fw-bold text-slate-900 mb-0">ADMIN DASHBOARD</h1>
+            <p class="text-muted small mb-0">Master Student Representation & Verification Management Console</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-outline-secondary" onclick="loadAdminDashboardData()">
+              <i class="bi bi-arrow-clockwise me-1"></i> Refresh Data
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric KPI Cards Grid -->
+        <div class="row g-3 mb-4" id="dashboardSection">
+          <!-- Total -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-primary">
+              <div class="stat-label">TOTAL STUDENTS</div>
+              <div class="stat-value text-slate-900" id="statAdminTotal">0</div>
+            </div>
+          </div>
+
+          <!-- Submitted -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-secondary">
+              <div class="stat-label">SUBMITTED</div>
+              <div class="stat-value text-secondary" id="statAdminSubmitted">0</div>
+            </div>
+          </div>
+
+          <!-- Under Verification -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-warning">
+              <div class="stat-label">UNDER VERIF.</div>
+              <div class="stat-value text-warning-emphasis" id="statAdminUnderVerif">0</div>
+            </div>
+          </div>
+
+          <!-- Verified -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-success">
+              <div class="stat-label">VERIFIED (✓)</div>
+              <div class="stat-value text-primary" id="statAdminVerified">0</div>
+            </div>
+          </div>
+
+          <!-- Correction Required -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-warning">
+              <div class="stat-label">CORRECTION REQ.</div>
+              <div class="stat-value text-danger-emphasis" id="statAdminCorrection">0</div>
+            </div>
+          </div>
+
+          <!-- Rejected -->
+          <div class="col-sm-6 col-xl-2">
+            <div class="stat-card stat-card-border-danger">
+              <div class="stat-label">REJECTED</div>
+              <div class="stat-value text-danger" id="statAdminRejected">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Center Panel -->
+        <div class="portal-card mb-4" id="exportsSection">
+          <div class="portal-card-header bg-white py-3 d-flex align-items-center justify-content-between">
+            <span class="fw-bold text-slate-800"><i class="bi bi-file-earmark-arrow-down text-primary me-2"></i>Report & Export Center</span>
+            <span class="badge bg-danger-subtle text-danger fw-bold border border-danger-subtle">ADMIN AUDIT TOOLS</span>
+          </div>
+          <div class="portal-card-body p-3">
+            <div class="row g-2">
+              <div class="col-md-3 col-sm-6">
+                <button type="button" id="btnAdminExportPublicExcel" class="btn btn-outline-success w-100">
+                  <i class="bi bi-file-earmark-excel me-1"></i> Public Excel Export
+                </button>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <button type="button" id="btnAdminExportPrivateExcel" class="btn btn-success w-100">
+                  <i class="bi bi-file-earmark-lock me-1"></i> Confidential Master Excel
+                </button>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <button type="button" id="btnAdminExportPublicPDF" class="btn btn-outline-primary w-100">
+                  <i class="bi bi-file-earmark-pdf me-1"></i> Public Representation PDF
+                </button>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <button type="button" id="btnAdminExportConfidentialPDF" class="btn btn-primary-custom w-100">
+                  <i class="bi bi-file-earmark-text me-1"></i> Confidential Audit PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row: Master Students Table + District Summary -->
+        <div class="row g-4" id="studentsSection">
+
+          <!-- Left Column: Master Students Management -->
+          <div class="col-xl-9 col-lg-8">
+            <div class="portal-card">
+              <div class="portal-card-header bg-white py-3">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                  <span class="fw-bold text-slate-800"><i class="bi bi-people-fill text-primary me-2"></i>Student Records Register</span>
+                  <span class="text-muted small" id="adminCountLabel">Loading records...</span>
+                </div>
+
+                <!-- Admin Search & Filter Controls -->
+                <div class="row g-2 mt-2">
+                  <div class="col-md-4">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text bg-light text-muted"><i class="bi bi-search"></i></span>
+                      <input type="text" id="adminSearchInput" class="form-control" placeholder="Search ID, Name, Mobile, School...">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <select id="adminFilterDistrict" class="form-select form-select-sm">
+                      <option value="">All Districts</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-3">
+                    <select id="adminFilterYear" class="form-select form-select-sm">
+                      <option value="">All Batches</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-2">
+                    <select id="adminFilterStatus" class="form-select form-select-sm">
+                      <option value="">All Statuses</option>
+                      <option value="Submitted">Submitted</option>
+                      <option value="Under Verification">Under Verification</option>
+                      <option value="Verified">Verified</option>
+                      <option value="Correction Required">Correction Required</option>
+                      <option value="Rejected">Rejected</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div class="table-responsive">
+                <table class="table portal-table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th style="width: 40px;">#</th>
+                      <th>Reg ID</th>
+                      <th>Student Name</th>
+                      <th>Mobile</th>
+                      <th>Batch</th>
+                      <th>School</th>
+                      <th>District</th>
+                      <th>School Type</th>
+                      <th>Status</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminStudentsTableBody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div id="adminLoadingIndicator" class="text-center py-5 d-none">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="text-muted small mt-2">Retrieving records from Realtime Database...</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: District Statistics -->
+          <div class="col-xl-3 col-lg-4" id="districtStatsSection">
+            <div class="portal-card">
+              <div class="portal-card-header bg-white py-3">
+                <span class="fw-bold text-slate-800"><i class="bi bi-bar-chart-fill text-primary me-2"></i>District Statistics</span>
+              </div>
+              <div class="table-responsive" style="max-height: 580px; overflow-y: auto;">
+                <table class="table table-sm table-hover align-middle mb-0" style="font-size: 0.85rem;">
+                  <thead class="table-light sticky-top">
+                    <tr>
+                      <th style="width: 25px;">#</th>
+                      <th>District</th>
+                      <th class="text-end">Total</th>
+                      <th class="text-end text-primary">Verif.</th>
+                      <th class="text-end text-muted">Pend.</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminDistrictStatsBody">
+                    <!-- Dynamic District Rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================================================================== -->
+  <!-- MODAL: Full Student Details, Editing, & Verification Management -->
+  <!-- ================================================================== -->
+  <div class="modal fade" id="studentDetailModal" tabindex="-1" aria-labelledby="studentDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <div>
+            <h5 class="modal-title fw-bold" id="studentDetailModalLabel">
+              <i class="bi bi-person-badge text-primary me-2"></i>Student Representation File
+            </h5>
+            <div class="small">
+              <span class="font-monospace fw-bold text-primary" id="modalStudentRegId">-</span> &bull;
+              <span class="fw-semibold text-slate-800" id="modalStudentNameHeader">-</span>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <div id="modalAlertContainer"></div>
+
+          <form id="editStudentForm">
+            <div class="row g-3">
+
+              <!-- Status Change Section (Prominent) -->
+              <div class="col-12">
+                <div class="card border-primary p-3 bg-primary-subtle bg-opacity-10">
+                  <div class="row align-items-center g-2">
+                    <div class="col-md-5">
+                      <label for="editStatusSelect" class="form-label fw-bold text-primary mb-0">
+                        <i class="bi bi-patch-check me-1"></i>Verification Status
+                      </label>
+                    </div>
+                    <div class="col-md-7">
+                      <select id="editStatusSelect" class="form-select fw-bold">
+                        <option value="Submitted">Submitted</option>
+                        <option value="Under Verification">Under Verification</option>
+                        <option value="Verified">✓ Verified (Blue Tick)</option>
+                        <option value="Correction Required">Correction Required</option>
+                        <option value="Rejected">Rejected</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Admin Notes -->
+              <div class="col-12">
+                <label for="editAdminNotes" class="form-label fw-bold">
+                  Admin Verification Notes
+                </label>
+                <textarea id="editAdminNotes" class="form-control" rows="2" placeholder="e.g. Verified with school nominal roll / 12th marksheet"></textarea>
+                <div class="form-text">Internal notes visible only to administrators.</div>
+              </div>
+
+              <!-- Editable Student Personal Info -->
+              <div class="col-md-6">
+                <label for="editStudentName" class="form-label">Student Name</label>
+                <input type="text" id="editStudentName" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editStudentMobile" class="form-label">Mobile Number</label>
+                <input type="tel" id="editStudentMobile" class="form-control font-monospace">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editStudentEmail" class="form-label">Email Address</label>
+                <input type="email" id="editStudentEmail" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editPassingYear" class="form-label">Academic Batch Year</label>
+                <select id="editPassingYear" class="form-select">
+                  <option value="2020-2021">2020-2021</option>
+                  <option value="2021-2022">2021-2022</option>
+                  <option value="2022-2023">2022-2023</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="editSchoolType" class="form-label">School Type</label>
+                <select id="editSchoolType" class="form-select">
+                  <option value="Government School">Government School</option>
+                  <option value="Government Aided School">Government Aided School</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label for="editLaptopStatus" class="form-label">Laptop Scheme Status</label>
+                <select id="editLaptopStatus" class="form-select">
+                  <option value="Not Received">Not Received</option>
+                  <option value="Received">Received</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label for="editStudentSchool" class="form-label">12th Standard School</label>
+                <input type="text" id="editStudentSchool" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editStudentDistrict" class="form-label">District</label>
+                <input type="text" id="editStudentDistrict" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editStudentTaluk" class="form-label">Taluk</label>
+                <input type="text" id="editStudentTaluk" class="form-control">
+              </div>
+
+              <div class="col-md-6">
+                <label for="editCurrentEducation" class="form-label">Current Education / Occupation</label>
+                <input type="text" id="editCurrentEducation" class="form-control">
+              </div>
+
+              <div class="col-12">
+                <label for="editHomeAddress" class="form-label">Residential Address</label>
+                <textarea id="editHomeAddress" class="form-control" rows="2"></textarea>
+              </div>
+
+              <!-- Audit Timestamps (Read-only) -->
+              <div class="col-12">
+                <div class="bg-light p-3 rounded-2 border text-muted" style="font-size: 0.8rem;">
+                  <div class="row g-2">
+                    <div class="col-sm-6"><strong>Registered:</strong> <span id="modalRegisteredAt">-</span></div>
+                    <div class="col-sm-6"><strong>Verified At:</strong> <span id="modalVerifiedAt">-</span></div>
+                    <div class="col-sm-6"><strong>Last Updated:</strong> <span id="modalUpdatedAt">-</span></div>
+                    <div class="col-sm-6"><strong>Updated By:</strong> <span id="modalUpdatedBy">-</span></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" id="btnSaveStudentChanges" class="btn btn-primary-custom">
+            <i class="bi bi-check2 me-1"></i>Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <!-- MODAL: Confirmation for Permanent Record Deletion -->
+  <!-- ================================================================== -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title fw-bold" id="deleteConfirmModalLabel">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Confirm Deletion
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="text-danger fs-1 mb-2">
+            <i class="bi bi-trash3-fill"></i>
+          </div>
+          <h5 class="fw-bold text-slate-900 mb-2">Are you sure you want to permanently delete this student record?</h5>
+          <p class="text-muted mb-3">
+            Student: <strong id="deletePromptStudentName" class="text-dark">-</strong><br>
+            Registration ID: <span id="deletePromptRegId" class="font-monospace text-primary fw-bold">-</span>
+          </p>
+          <p class="small text-danger mb-0">
+            This action cannot be undone. The representation entry will be permanently removed from both the public directory and database.
+          </p>
+        </div>
+        <div class="modal-footer justify-content-center bg-light">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">CANCEL</button>
+          <button type="button" id="btnConfirmDeleteStudent" class="btn btn-danger px-4">DELETE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SheetJS & jsPDF Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+  <!-- Firebase Compat CDN Libraries -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <!-- Portal Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/firebase.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/admin.js"></script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
